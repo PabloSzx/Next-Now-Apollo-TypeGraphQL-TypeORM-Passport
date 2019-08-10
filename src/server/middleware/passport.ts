@@ -71,13 +71,10 @@ passport.deserializeUser<User, string>(async (email, done) => {
   }
 });
 
-const requireAuth = Router();
+export const requireAuth = Router();
 requireAuth.use(auth, (req, res, next) => {
-  if (req.user && req.user.email) {
+  if (req.user && req.isAuthenticated()) {
     return next();
-  } else {
-    res.sendStatus(403);
   }
+  res.sendStatus(403);
 });
-
-export { requireAuth };

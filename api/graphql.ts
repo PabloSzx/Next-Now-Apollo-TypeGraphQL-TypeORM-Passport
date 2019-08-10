@@ -2,9 +2,7 @@ import "reflect-metadata";
 
 import express from "express";
 
-import { connection } from "../src/server/db";
-import { auth, common } from "../src/server/middleware";
-import { apollo } from "../src/server/utils";
+import { apollo, auth, common, connection } from "../src/server";
 
 const app = express();
 

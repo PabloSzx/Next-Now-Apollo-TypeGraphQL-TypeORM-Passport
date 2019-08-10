@@ -1,19 +1,16 @@
 import { ApolloServer } from "apollo-server-express";
 import { Express } from "express";
-import { resolve } from "path";
+import { values } from "lodash";
 import { buildSchemaSync } from "type-graphql";
 import { Container as container } from "typedi";
 
-import { authChecker } from "./authChecker";
-import { buildContext } from "./buildContext";
-
-const resolverPath = resolve(__dirname, "../graphql/resolvers/*.js");
+import * as resolvers from "./resolvers";
+import { authChecker, buildContext } from "./utils";
 
 const apolloServer = new ApolloServer({
   schema: buildSchemaSync({
-    resolvers: [resolverPath],
+    resolvers: values(resolvers),
     validate: false,
-    skipCheck: true,
     container,
     authChecker,
   }),
