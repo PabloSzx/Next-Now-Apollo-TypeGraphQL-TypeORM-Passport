@@ -2,7 +2,7 @@ import { Query, Resolver } from "type-graphql";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
-import { User } from "../entities/user";
+import { User } from "../../entities/user";
 
 @Resolver(_of => User)
 export class UserResolver {

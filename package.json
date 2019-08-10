@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@pablosz/type-graphql": "^0.17.5",
     "apollo-boost": "^0.4.3",
     "apollo-cache": "^1.3.2",
     "apollo-client": "^2.6.3",
@@ -49,6 +48,7 @@
     "@types/node": "^12.7.1",
     "@types/passport": "^0.4.7",
     "@types/passport-local": "^1.0.33",
+    "@types/pg": "^7.4.14",
     "@types/react": "16.9.0",
     "@types/react-dom": "16.8.5",
     "babel-plugin-transform-typescript-metadata": "^0.2.2",

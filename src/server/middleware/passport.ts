@@ -9,7 +9,7 @@ import { User } from "../entities";
 export const WRONG_PASSWORD = "WRONG_PASSWORD";
 export const WRONG_EMAIL = "WRONG_EMAIL";
 
-const auth = Router();
+export const auth = Router();
 auth.use(
   ExpressSession({
     secret: "tF47Oz#R$v2oCT&gooX%QclBNF$E8OosV^vBebkYVro8$5DB1a",
@@ -81,5 +81,3 @@ requireAuth.use(auth, (req, res, next) => {
 });
 
 export { requireAuth };
-
-export default auth;

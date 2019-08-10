@@ -1,3 +1,3 @@
-import { buildContext } from "../../server/utils";
+import { buildContext } from "../../utils";
 
 export type IContext = ReturnType<typeof buildContext>;

@@ -9,10 +9,14 @@ export class User {
   email: string;
 
   @Field()
-  @Column()
+  @Column({ default: "Default" })
   name: string;
 
   @Field()
-  @Column()
+  @Column({ nullable: false })
   password: string;
+
+  @Field()
+  @Column({ default: false })
+  admin: boolean;
 }
