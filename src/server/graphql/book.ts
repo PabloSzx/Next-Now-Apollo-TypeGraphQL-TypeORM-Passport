@@ -1,10 +1,22 @@
-import { Field, ObjectType } from "type-graphql";
+import { Query, Resolver } from "type-graphql";
 
-@ObjectType()
-export class Book {
-  @Field()
-  title!: string;
+import { Book } from "../entities";
 
-  @Field()
-  author!: string;
+const books = [
+  {
+    title: "Harry Potter and the Chamber of Secrets",
+    author: "J.K. Rowling",
+  },
+  {
+    title: "Jurassic Park",
+    author: "Michael Crichton",
+  },
+];
+
+@Resolver(_of => Book)
+export class BookResolver {
+  @Query(_returns => [Book])
+  books() {
+    return books;
+  }
 }

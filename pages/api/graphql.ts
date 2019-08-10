@@ -2,35 +2,23 @@ import "reflect-metadata";
 
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
-import { buildSchemaSync, Query, Resolver } from "type-graphql";
+import { buildSchemaSync } from "type-graphql";
 
-import { Book } from "../../src/server/graphql";
+import { connection } from "../../src/server/db";
+import { BookResolver, UserResolver } from "../../src/server/graphql";
+import common from "../../src/server/middleware/common";
+import auth from "../../src/server/middleware/passport";
 
 const app = express();
 
-const books = [
-  {
-    title: "Harry Potter and the Chamber of Secrets",
-    author: "J.K. Rowling",
-  },
-  {
-    title: "Jurassic Park",
-    author: "Michael Crichton",
-  },
-];
-
-@Resolver(_of => Book)
-class BookResolver {
-  @Query(_returns => [Book])
-  books() {
-    return books;
-  }
-}
+app.use(common);
+app.use(auth);
 
 const apolloServer = new ApolloServer({
   schema: buildSchemaSync({
-    resolvers: [BookResolver],
+    resolvers: [UserResolver, BookResolver],
     validate: false,
+    skipCheck: true,
   }),
   playground:
     process.env.NODE_ENV !== "production"
@@ -40,6 +28,11 @@ const apolloServer = new ApolloServer({
           },
         }
       : false,
+});
+
+app.use(async (_req, _res, next) => {
+  await connection;
+  next();
 });
 
 apolloServer.applyMiddleware({
