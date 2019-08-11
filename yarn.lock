@@ -2327,7 +2327,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-class-validator@>=0.9.1:
+class-validator@>=0.9.1, class-validator@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.10.0.tgz#5e5f8108fa200d5ce1906cd5537af102c072dbcd"
   integrity sha512-RvjxRlvoCvM/ojUq11j78ISpReGdBoMErdmDk1e27aQZK6ppSXq751UE6jB9JI7ayEnL6Nnmllzn/HXVSu3dmg==
@@ -5912,6 +5912,11 @@ typedi@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/typedi/-/typedi-0.8.0.tgz#d8e203bd1d41a96e2b0a5c6295147d74b2b2d03e"
   integrity sha512-/c7Bxnm6eh5kXx2I+mTuO+2OvoWni5+rXA3PhXwVWCtJRYmz3hMok5s1AKLzoDvNAZqj/Q/acGstN0ri5aQoOA==
+
+typeorm-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/typeorm-store/-/typeorm-store-1.2.0.tgz#1f6a552fa635a4ee21401891e62cbd53f02dad0a"
+  integrity sha512-HdNV8OZcSS1ETSxXn8b0UsZc3E+S+KjOGRN0rPGiSUP74LylUEehTzMrgAekZw7h4zfAtfqqgpEILZIhoTbrZA==
 
 typeorm-typedi-extensions@^0.2.3:
   version "0.2.3"

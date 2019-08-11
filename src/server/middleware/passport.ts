@@ -2,23 +2,31 @@ import { Router } from "express";
 import ExpressSession from "express-session";
 import passport from "passport";
 import { Strategy } from "passport-local";
+import { Repository } from "typeorm";
+import { TypeormStore } from "typeorm-store";
 
 import { connection } from "../db";
-import { User } from "../entities";
+import { Session, User } from "../entities";
 
 export const WRONG_PASSWORD = "WRONG_PASSWORD";
 export const WRONG_EMAIL = "WRONG_EMAIL";
 
 export const auth = Router();
-auth.use(
-  ExpressSession({
+
+function SessionMiddleware(repository: Repository<Session>) {
+  return ExpressSession({
     secret: "tF47Oz#R$v2oCT&gooX%QclBNF$E8OosV^vBebkYVro8$5DB1a",
     resave: false,
     saveUninitialized: false,
     rolling: true,
     cookie: { maxAge: 86400000, secure: false },
-  })
-);
+    store: new TypeormStore({ repository }),
+  });
+}
+
+auth.use(async (req, res, next) => {
+  SessionMiddleware((await connection).getRepository(Session))(req, res, next);
+});
 
 auth.use(passport.initialize());
 auth.use(passport.session());
@@ -67,7 +75,7 @@ passport.deserializeUser<User, string>(async (email, done) => {
       done(WRONG_EMAIL);
     }
   } catch (err) {
-    console.error(JSON.stringify(err, null, 4));
+    console.error(err);
   }
 });
 
