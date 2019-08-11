@@ -83,7 +83,7 @@ export class AuthResolver {
     try {
       if (
         !(await this.UserRepository.findOne({
-          where: email,
+          where: { email },
         }))
       ) {
         const user = await this.UserRepository.create({
@@ -92,7 +92,8 @@ export class AuthResolver {
           name,
           admin,
         });
-        await Promise.all([login(user), this.UserRepository.save(user)]);
+        await this.UserRepository.save(user);
+        await login(user);
 
         return user;
       } else throw new Error(USER_ALREADY_EXISTS);

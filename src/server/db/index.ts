@@ -7,10 +7,16 @@ import * as entities from "../entities";
 const dbConfig: ConnectionOptions = {
   type: "postgres",
   entities: values(entities),
-  username: process.env.DB_USERNAME || "postgres",
-  password: process.env.DB_PASSWORD || undefined,
-  database: process.env.DB_NAME || "postgres",
-  port: parseInt(process.env.DB_PORT || "") || 5432,
+  ...(process.env.DB_URL
+    ? {
+        url: process.env.DB_URL,
+      }
+    : {
+        username: process.env.DB_USERNAME || "postgres",
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE || "postgres",
+        port: parseInt(process.env.DB_PORT || "") || 5432,
+      }),
   synchronize: true,
   logging: true,
 };
