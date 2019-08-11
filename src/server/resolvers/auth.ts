@@ -3,9 +3,9 @@ import { Arg, Ctx, Field, InputType, Mutation, Query, Resolver } from "type-grap
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
+import { USER_ALREADY_EXISTS, WRONG_INFO } from "../consts";
 import { User } from "../entities";
 import { IContext } from "../interfaces";
-import { WRONG_PASSWORD } from "../middleware";
 
 @InputType()
 export class LoginInput {
@@ -22,6 +22,9 @@ export class LoginInput {
 export class SignUpInput extends LoginInput {
   @Field({ nullable: true, defaultValue: "Default" })
   name: string;
+
+  @Field({ nullable: true, defaultValue: false })
+  admin: boolean;
 }
 
 @Resolver()
@@ -43,11 +46,15 @@ export class AuthResolver {
     @Ctx() { login }: IContext
   ) {
     try {
-      const user = await this.UserRepository.findOne(email);
+      const user = await this.UserRepository.findOne({
+        where: {
+          email,
+        },
+      });
 
       if (user) {
         if (user.password !== password) {
-          throw new Error(WRONG_PASSWORD);
+          throw new Error(WRONG_INFO);
         } else {
           await login(user);
         }
@@ -70,21 +77,25 @@ export class AuthResolver {
 
   @Mutation(_returns => User, { nullable: true })
   async sign_up(
-    @Arg("input") { email, password, name }: SignUpInput,
+    @Arg("input") { email, password, name, admin }: SignUpInput,
     @Ctx() { login }: IContext
   ) {
     try {
-      if (!this.UserRepository.findOne(email)) {
+      if (
+        !(await this.UserRepository.findOne({
+          where: email,
+        }))
+      ) {
         const user = await this.UserRepository.create({
           email,
           password,
           name,
+          admin,
         });
         await Promise.all([login(user), this.UserRepository.save(user)]);
 
         return user;
-      }
-      throw new Error("USER_ALREADY_EXISTS");
+      } else throw new Error(USER_ALREADY_EXISTS);
     } catch (err) {
       throw err;
     }

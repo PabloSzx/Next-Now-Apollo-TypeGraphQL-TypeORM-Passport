@@ -1,5 +1,6 @@
 import { AuthChecker } from "type-graphql";
 
+import { ADMIN } from "../consts";
 import { IContext } from "../interfaces/server";
 
 export const authChecker: AuthChecker<IContext> = (
@@ -11,8 +12,9 @@ export const authChecker: AuthChecker<IContext> = (
 
   for (const role of roles) {
     switch (role) {
-      case "admin": {
-        return false;
+      case ADMIN: {
+        if (!user.admin) return false;
+        break;
       }
       default:
     }

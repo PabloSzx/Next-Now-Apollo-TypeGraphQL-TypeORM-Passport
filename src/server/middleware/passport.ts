@@ -1,21 +1,18 @@
 import { Router } from "express";
 import ExpressSession from "express-session";
 import passport from "passport";
-import { Strategy } from "passport-local";
 import { Repository } from "typeorm";
 import { TypeormStore } from "typeorm-store";
 
+import { WRONG_INFO } from "../consts";
 import { connection } from "../db";
 import { Session, User } from "../entities";
-
-export const WRONG_PASSWORD = "WRONG_PASSWORD";
-export const WRONG_EMAIL = "WRONG_EMAIL";
 
 export const auth = Router();
 
 function SessionMiddleware(repository: Repository<Session>) {
   return ExpressSession({
-    secret: "tF47Oz#R$v2oCT&gooX%QclBNF$E8OosV^vBebkYVro8$5DB1a",
+    secret: "tF47Oz#R$v2oCT&gooX%QclBNFa$E8OosV^vBebkYVro8$5DB1a",
     resave: false,
     saveUninitialized: false,
     rolling: true,
@@ -31,48 +28,21 @@ auth.use(async (req, res, next) => {
 auth.use(passport.initialize());
 auth.use(passport.session());
 
-passport.use(
-  new Strategy(
-    {
-      usernameField: "email",
-      passwordField: "password",
-    },
-    async (email, password, cb) => {
-      try {
-        const UserRepository = (await connection).getRepository(User);
-
-        const user = await UserRepository.findOne(email);
-
-        if (!user) {
-          return cb(WRONG_EMAIL, false);
-        }
-        if (user.password !== password) {
-          return cb(WRONG_PASSWORD, false);
-        }
-
-        return cb(null, user);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  )
-);
-
-passport.serializeUser<User, string>((user, cb) => {
-  if (user) cb(null, user.email);
-  else cb(WRONG_EMAIL);
+passport.serializeUser<User, number>((user, cb) => {
+  if (user) cb(null, user.id);
+  else cb(WRONG_INFO);
 });
 
-passport.deserializeUser<User, string>(async (email, done) => {
+passport.deserializeUser<User, number>(async (id, done) => {
   try {
     const UserRepository = (await connection).getRepository(User);
 
-    const user = await UserRepository.findOne(email);
+    const user = await UserRepository.findOne(id);
 
     if (user) {
       done(null, user);
     } else {
-      done(WRONG_EMAIL);
+      done(WRONG_INFO);
     }
   } catch (err) {
     console.error(err);

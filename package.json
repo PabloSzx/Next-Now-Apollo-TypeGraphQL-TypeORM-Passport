@@ -24,7 +24,6 @@
     "next": "9.0.3",
     "next-with-apollo": "^4.2.0",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
     "pg": "^7.12.1",
     "react": "16.9.0",
     "react-apollo": "^3.0.0",
