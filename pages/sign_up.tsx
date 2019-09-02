@@ -4,8 +4,8 @@ import Router from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { useMutation } from "react-apollo";
 
-import { AuthContext } from "../src/client/Components/Auth/Context";
-import { SignUpInput, User } from "../src/server";
+import { AuthContext, AuthenticatedUser } from "../src/client/Components/Auth/Context";
+import { SignUpInput } from "../src/server";
 
 export default () => {
   const [email, setEmail] = useState("");
@@ -20,12 +20,24 @@ export default () => {
     }
   }, [user]);
   const [signUp, { loading }] = useMutation<
-    { sign_up: User },
-    { input: SignUpInput }
+    {
+      sign_up: AuthenticatedUser;
+    },
+    SignUpInput
   >(
     gql`
-      mutation sign_up($input: SignUpInput!) {
-        sign_up(input: $input) {
+      mutation sign_up(
+        $email: String!
+        $name: String!
+        $password: String!
+        $admin: Boolean!
+      ) {
+        sign_up(
+          email: $email
+          name: $name
+          password: $password
+          admin: $admin
+        ) {
           email
           name
           admin
@@ -34,12 +46,10 @@ export default () => {
     `,
     {
       variables: {
-        input: {
-          email,
-          password,
-          name,
-          admin,
-        },
+        email,
+        password,
+        name,
+        admin,
       },
     }
   );
@@ -56,12 +66,10 @@ export default () => {
           try {
             const data = await signUp({
               variables: {
-                input: {
-                  email,
-                  password,
-                  name,
-                  admin,
-                },
+                email,
+                password,
+                name,
+                admin,
               },
             });
             if (data && data.data) {

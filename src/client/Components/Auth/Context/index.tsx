@@ -4,18 +4,24 @@ import { useQuery } from "react-apollo";
 
 import { User } from "../../../../server";
 
+export type AuthenticatedUser = {
+  email: string;
+  name: string;
+  admin: boolean;
+};
+
 export const AuthContext = createContext({
   user: null,
   setUser: () => {},
   loading: true,
 } as {
-  user: User | null;
-  setUser: (user: User | null) => void;
+  user: AuthenticatedUser | null;
+  setUser: (user: AuthenticatedUser | null) => void;
   loading: boolean;
 });
 
 export const Auth: FunctionComponent = ({ children }) => {
-  const [user, setUser] = useState(null as User | null);
+  const [user, setUser] = useState(null as AuthenticatedUser | null);
 
   const { loading, data } = useQuery<{
     current_user: User;

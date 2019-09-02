@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div>
       <Head>
-        <title>Homea</title>
+        <title>Home</title>
       </Head>
 
       {user && <h1>Welcome {user.name}</h1>}

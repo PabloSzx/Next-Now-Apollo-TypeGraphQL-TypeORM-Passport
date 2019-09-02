@@ -1,5 +1,6 @@
 import { IsEmail, Length } from "class-validator";
-import { Arg, Ctx, Field, InputType, Mutation, Query, Resolver } from "type-graphql";
+import { SHA512 } from "crypto-js";
+import { Args, ArgsType, Ctx, Field, Mutation, Query, Resolver } from "type-graphql";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
@@ -7,7 +8,7 @@ import { USER_ALREADY_EXISTS, WRONG_INFO } from "../consts";
 import { User } from "../entities";
 import { IContext } from "../interfaces";
 
-@InputType()
+@ArgsType()
 export class LoginInput {
   @Field()
   @IsEmail()
@@ -18,7 +19,7 @@ export class LoginInput {
   password: string;
 }
 
-@InputType()
+@ArgsType()
 export class SignUpInput extends LoginInput {
   @Field({ nullable: true, defaultValue: "Default" })
   name: string;
@@ -42,7 +43,7 @@ export class AuthResolver {
 
   @Mutation(_returns => User, { nullable: true })
   async login(
-    @Arg("input") { email, password }: LoginInput,
+    @Args() { email, password }: LoginInput,
     @Ctx() { login }: IContext
   ) {
     try {
@@ -52,6 +53,7 @@ export class AuthResolver {
         },
       });
 
+      password = SHA512(password).toString();
       if (user) {
         if (user.password !== password) {
           throw new Error(WRONG_INFO);
@@ -77,7 +79,7 @@ export class AuthResolver {
 
   @Mutation(_returns => User, { nullable: true })
   async sign_up(
-    @Arg("input") { email, password, name, admin }: SignUpInput,
+    @Args() { email, password, name, admin }: SignUpInput,
     @Ctx() { login }: IContext
   ) {
     try {
@@ -86,12 +88,15 @@ export class AuthResolver {
           where: { email },
         }))
       ) {
+        password = SHA512(password).toString();
+
         const user = await this.UserRepository.create({
           email,
           password,
           name,
           admin,
         });
+
         await this.UserRepository.save(user);
         await login(user);
 

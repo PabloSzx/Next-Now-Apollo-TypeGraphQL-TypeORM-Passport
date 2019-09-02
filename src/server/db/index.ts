@@ -19,6 +19,7 @@ const dbConfig: ConnectionOptions = {
       }),
   synchronize: true,
   logging: true,
+  logger: "file",
 };
 
 useContainer(Container);
