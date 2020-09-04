@@ -35,7 +35,7 @@
     "react-dom": "16.9.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.3.0",
-    "type-graphql": "^0.17.4",
+    "type-graphql": "^0.17.6",
     "typedi": "^0.8.0",
     "typeorm": "^0.2.18",
     "typeorm-store": "^1.2.0",
