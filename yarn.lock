@@ -1130,20 +1130,15 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@>=6", "@types/node@^12.7.1":
-  version "12.7.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.1.tgz#3b5c3a26393c19b400844ac422bd0f631a94d69d"
-  integrity sha512-aK9jxMypeSrhiYofWWBf/T7O+KwaiAHzM4sveCdWPn71lzUSMimRnKzhXDKfKwV1kWoBo2P1aGgaIYGLf9/ljw==
+"@types/node@*", "@types/node@>=6", "@types/node@^12.6.2", "@types/node@^12.7.1":
+  version "12.12.55"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.55.tgz#0aa266441cb9e1fd3e415a8f619cb7d776667cdd"
+  integrity sha512-Vd6xQUVvPCTm7Nx1N7XHcpX6t047ltm7TgcsOr4gFHjeYgwZevo+V7I1lfzHnj5BT5frztZ42+RTG4MwYw63dw==
 
 "@types/node@^10.1.0":
   version "10.14.15"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.15.tgz#e8f7729b631be1b02ae130ff0b61f3e018000640"
   integrity sha512-CBR5avlLcu0YCILJiDIXeU2pTw7UK/NIxfC63m7d7CVamho1qDEzXKkOtEauQRPMy6MI8mLozth+JJkas7HY6g==
-
-"@types/node@^11.13.7":
-  version "11.13.19"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.19.tgz#c7bd7009aa850464775d8a814e18138d633cd676"
-  integrity sha512-tLRDU1hmcWamtgRT2iVRdraAQVGFQGgtcqracSo9XyMN1VeZLSVGb8RJJxVqab7UGbijoUijGPVFMjmqzyZIUw==
 
 "@types/passport@^0.4.7":
   version "0.4.7"
@@ -1200,10 +1195,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/semver@^6.0.0":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-6.0.1.tgz#a984b405c702fa5a7ec6abc56b37f2ba35ef5af6"
-  integrity sha512-ffCdcrEE5h8DqVxinQjo+2d1q+FV5z7iNtPofw3JsrltSoSVlOGaW0rY8XxtO9XukdTn8TaCGWmk2VFGhI70mg==
+"@types/semver@^6.0.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-6.2.1.tgz#a236185670a7860f1597cf73bea2e16d001461ba"
+  integrity sha512-+beqKQOh9PYxuHvijhVl+tIHvT6tuwOrE9m14zd+MT2A38KoKZhh7pYJ0SNleLtwDsiIxHDsIk9bv01oOxvSvA==
 
 "@types/serve-static@*":
   version "1.13.2"
@@ -3390,10 +3385,10 @@ graphql-extensions@0.9.1:
     apollo-server-env "2.4.1"
     apollo-server-types "0.2.1"
 
-graphql-query-complexity@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/graphql-query-complexity/-/graphql-query-complexity-0.2.3.tgz#ca26790fd5d22cb3d4ca8f43d19605929d8cf27f"
-  integrity sha512-XLvEsqGTJmJmgof8u5NjIkBHL75b4Inw1F8JQ3jGRBhr3hVFx6aWOTL7C2aknp1uIh8dRmqwzrb9gas2NLHnfA==
+graphql-query-complexity@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/graphql-query-complexity/-/graphql-query-complexity-0.3.0.tgz#71a44e124b7591a185d9d8cde55205aa57680c5d"
+  integrity sha512-JVqHT81Eh9O17iOjs1r1qzsh5YY2upfA3zoUsQGggT4d+1hajWitk4GQQY5SZtq5eul7y6jMsM9qRUSOAKhDJQ==
   dependencies:
     lodash.get "^4.4.2"
 
@@ -5545,7 +5540,7 @@ semver@4.3.2:
   resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.2.tgz#c7a07158a80bedd052355b770d82d6640f803be7"
   integrity sha1-x6BxWKgL7dBSNVt3DYLWZA+AO+c=
 
-semver@^6.0.0, semver@^6.3.0:
+semver@^6.2.0, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
@@ -6204,20 +6199,20 @@ tty-browserify@0.0.0:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
 
-type-graphql@^0.17.4:
-  version "0.17.4"
-  resolved "https://registry.yarnpkg.com/type-graphql/-/type-graphql-0.17.4.tgz#b99a11e8814e2158c11a8149871d09b97895e01d"
-  integrity sha512-vrY0wVRo3EsnTMGcEdkieP/a5dgsSibWBlA0lT8/gBh/M9R72H2R6YtwdlfUMPDxRIVo6KdHh7cHNzn19bQbpw==
+type-graphql@^0.17.6:
+  version "0.17.6"
+  resolved "https://registry.yarnpkg.com/type-graphql/-/type-graphql-0.17.6.tgz#2a939df607f7ca2924986fd0c0b8c753835d7d01"
+  integrity sha512-UFZaMMnpae3zeu9qCdWN82hm8wQeYu/+sQFbG5v3vlTtctZ9Xle9bvNi/rzSbQaG94K9Y5O5AGxjVKKMpEAMYA==
   dependencies:
     "@types/glob" "^7.1.1"
-    "@types/node" "^11.13.7"
-    "@types/semver" "^6.0.0"
+    "@types/node" "^12.6.2"
+    "@types/semver" "^6.0.1"
     class-validator ">=0.9.1"
-    glob "^7.1.3"
-    graphql-query-complexity "^0.2.3"
+    glob "^7.1.4"
+    graphql-query-complexity "^0.3.0"
     graphql-subscriptions "^1.1.0"
-    semver "^6.0.0"
-    tslib "^1.9.3"
+    semver "^6.2.0"
+    tslib "^1.10.0"
 
 type-is@^1.6.16, type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"
