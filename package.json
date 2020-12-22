@@ -61,7 +61,7 @@
     "@types/react": "16.9.0",
     "@types/react-dom": "16.8.5",
     "babel-plugin-transform-typescript-metadata": "^0.2.2",
-    "node-notifier": "^5.4.3",
+    "node-notifier": "^8.0.1",
     "ts-node-dev": "^1.0.0-pre.42",
     "typescript": "^3.5.3"
   }
