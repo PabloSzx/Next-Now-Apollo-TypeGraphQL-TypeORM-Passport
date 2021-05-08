@@ -37,7 +37,7 @@
     "ts-node": "^8.3.0",
     "type-graphql": "^0.17.4",
     "typedi": "^0.8.0",
-    "typeorm": "^0.2.18",
+    "typeorm": "^0.2.25",
     "typeorm-store": "^1.2.0",
     "typeorm-typedi-extensions": "^0.2.3"
   },
